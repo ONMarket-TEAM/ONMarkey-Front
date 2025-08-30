@@ -1,21 +1,18 @@
-<!-- components/post/PostCard.vue -->
 <template>
   <div class="post-card" @click="goToDetail">
-    <!-- 상단 대출 버튼과 D-12 -->
-    <div class="card-header">
-      <button class="loan-btn">{{ buttonText }}</button>
-      <span class="deadline">{{ deadline }}</span>
-    </div>
-    
-    <!-- 제목 -->
-    <h3 class="card-title">{{ title }}</h3>
-    
-    <!-- 설명 -->
-    <p class="card-description">{{ description }}</p>
-    
-    <!-- 하단 태그들 -->
-    <div class="card-tags">
-      <span class="tag" v-for="tag in tags" :key="tag">#{{ tag }}</span>
+    <div class="container section">
+      <div class="card-header">
+        <button class="loan-btn">{{ buttonText }}</button>
+        <span class="deadline">{{ deadline }}</span>
+      </div>
+      
+      <h3 class="card-title">{{ title }}</h3>
+      
+      <p class="card-description">{{ description }}</p>
+      
+      <div class="card-tags">
+        <span class="tag" v-for="tag in tags" :key="tag">#{{ tag }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -27,7 +24,6 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-// Props 정의
 const props = defineProps({
   id: {
     type: [String, Number],
@@ -51,33 +47,29 @@ const props = defineProps({
   }
 })
 
-// 현재 경로에 따라 버튼 텍스트 결정
 const buttonText = computed(() => {
   if (route.path === '/loans') {
     return '대출'
-  } else if (route.path === '/supports') {
+  } else if (route.path === '/policies') {
     return '공공 지원금'
   }
   return '대출'
 })
 
-// 상세 페이지로 이동
 const goToDetail = () => {
-  // 현재 경로가 /loans인지 /supports인지 확인
   if (route.path === '/loans') {
     router.push(`/loans/${props.id}`)
-  } else if (route.path === '/supports') {
-    router.push(`/supports/${props.id}`)
+  } else if (route.path === '/policies') {
+    router.push(`/policies/${props.id}`)
   }
 }
 </script>
 
 <style scoped>
 .post-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
   height: 100%;
   display: flex;
@@ -86,67 +78,72 @@ const goToDetail = () => {
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+}
+
+.post-card .container.section {
+  padding-block: 1.25rem;
+  padding-inline: 1.25rem;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 
 .loan-btn {
-  background: #fff;
-  border: 1px solid #ff6b6b;
-  color: #ff6b6b;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 14px;
+  background: var(--color-white);
+  border: 1px solid var(--color-sub);
+  color: var(--color-sub);
+  padding: 0.375rem 1rem;
+  border-radius: 1.25rem;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .loan-btn:hover {
-  background: #ff6b6b;
-  color: white;
+  background: var(--color-sub);
+  color: var(--color-white);
 }
 
 .deadline {
-  color: #ff6b6b;
+  color: var(--color-sub);
   font-weight: bold;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   color: #333;
-  margin: 0 0 12px 0;
+  margin: 0 0 0.75rem 0;
   line-height: 1.4;
 }
 
 .card-description {
   color: #666;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.5;
-  margin: 0 0 20px 0;
+  margin: 0 0 1.25rem 0;
   flex-grow: 1;
 }
 
 .card-tags {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .tag {
-  background: #f5f5f5;
+  background: var(--color-light-3);
   color: #666;
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 12px;
+  padding: 0.375rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 </style>

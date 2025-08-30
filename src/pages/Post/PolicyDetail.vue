@@ -1,5 +1,5 @@
 <template>
-  <div class="loan-detail-container">
+  <div class="policy-detail-container">
     <div class="container section">
       <div class="product-image">
         <div class="image-placeholder">
@@ -143,9 +143,9 @@ const toggleLike = () => {
 }
 
 const productDetail = computed(() => {
-  const isLoanPage = route.path.includes('/loans/')
+  const isPolicyPage = route.path.includes('/policies/')
   
-  if (isLoanPage) {
+  if (isPolicyPage) {
     return {
       name: '상품 이름',
       date: '2024/01/23',
@@ -174,7 +174,7 @@ const reviews = ref([
 </script>
 
 <style scoped>
-.loan-detail-container {
+.policy-detail-container {
   background: var(--color-white);
   border-radius: 1rem;
   box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.1);

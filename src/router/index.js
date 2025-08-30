@@ -34,18 +34,18 @@ const router = createRouter({
 
     // 정부 지원금 페이지 추가
     {
-      path: '/supports',
+      path: '/policies',
       component: () => import('@/pages/Post/PostList.vue'),
     },
 
     // 상세 페이지들
     {
       path: '/loans/:id',
-      component: () => import('@/pages/post/LoanDetail.vue'),
+      component: () => import('@/pages/Post/LoanDetail.vue'),
     },
     {
-      path: '/supports/:id',
-      component: () => import('@/pages/post/LoanDetail.vue'),
+      path: '/policies/:id',
+      component: () => import('@/pages/Post/PolicyDetail.vue'),
     },
     /* 404 not found 페이지 */
     {

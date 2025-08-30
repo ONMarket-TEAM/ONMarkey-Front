@@ -1,17 +1,18 @@
-<!-- pages/Post/PostList.vue -->
 <template>
   <div class="post-list-container">
-    <h1 class="page-title">{{ pageTitle }}</h1>
-    <div class="post-grid">
-      <PostCard
-        v-for="post in posts"
-        :key="post.id"
-        :id="post.id"
-        :title="post.title"
-        :description="post.description"
-        :tags="post.tags"
-        :deadline="post.deadline"
-      />
+    <div class="container section">
+      <h1 class="page-title">{{ pageTitle }}</h1>
+      <div class="post-grid">
+        <PostCard
+          v-for="post in posts"
+          :key="post.id"
+          :id="post.id"
+          :title="post.title"
+          :description="post.description"
+          :tags="post.tags"
+          :deadline="post.deadline"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -23,20 +24,17 @@ import PostCard from '@/components/post/PostCard.vue'
 
 const route = useRoute()
 
-// 현재 경로에 따라 페이지 제목 설정
 const pageTitle = computed(() => {
   if (route.path === '/loans') {
     return '대출 상품 보기'
-  } else if (route.path === '/supports') {
+  } else if (route.path === '/policiess') {
     return '정부 지원금 보기'
   }
   return '상품 목록'
 })
 
-// 현재 경로에 따라 다른 데이터 표시
 const posts = computed(() => {
   if (route.path === '/loans') {
-    // 대출 상품 데이터
     return [
       {
         id: 1,
@@ -60,8 +58,7 @@ const posts = computed(() => {
         deadline: 'D-20'
       }
     ]
-  } else if (route.path === '/supports') {
-    // 정부 지원금 데이터
+  } else if (route.path === '/policies') {
     return [
       {
         id: 1,
@@ -92,23 +89,22 @@ const posts = computed(() => {
 
 <style scoped>
 .post-list-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  background: var(--color--white);
+  min-height: 100vh;
 }
 
 .page-title {
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
   color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
   text-align: center;
 }
 
 .post-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+  gap: 1.25rem;
   align-items: stretch;
 }
 </style>
